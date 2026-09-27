@@ -1,0 +1,7 @@
+{
+  "title": "Slides",
+  "description": "Decks written in Markdown, presented in the browser.",
+  "decks": [
+    "welcome"
+  ]
+}
