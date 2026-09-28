@@ -1,8 +1,8 @@
-# Conceptual
+# Sequential
 
 Designed presentations on civilisation research.
 
-**Live:** https://maxramsahoye.github.io/conceptualadaptivesystems/
+**Live:** https://maxramsahoye.github.io/sequential/
 
 A small static site for **presenting** slide decks. Decks are plain Markdown
 files written with Claude Code; the site renders and presents them. No build
