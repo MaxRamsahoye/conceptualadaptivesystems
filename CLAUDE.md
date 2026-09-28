@@ -104,6 +104,15 @@ paragraph or list item line, or directly after an image: `![x](a.png){.w-50}`.
 - Variants: `.fragment.fade` (no slide-up), `.fragment.highlight` (turns accent colour).
 - `<!-- build -->` makes every list item a fragment.
 
+### Typography, colour and theme
+
+- Titles and headings use **IBM Plex Sans Arabic**; body text and descriptions
+  use **ET Bembo** (both self-hosted in `assets/fonts/`). Don't swap fonts per deck.
+- The accent colour is `#16a34a` in every theme; only override `accent:` when asked.
+- Viewers can flip light/dark with the toggle (or `T`). Slides pinned with
+  `class: dark` / `light` / `brand` keep their colours; everything else follows
+  the toggle. `tools/render.mjs` always renders decks as authored.
+
 ### Utility classes
 
 Text: `muted` `accent` `small` `tiny` `large` `huge` `lead` `center` `right` `mono` `caps`
@@ -131,7 +140,9 @@ assets/js/deck.js     deck.md → slides (pure)
 assets/js/render.js   slide DOM, thumbnails, overflow measurement
 assets/js/viewer.js   navigation, overview, presenter sync, keyboard
 assets/js/library.js  library page
+assets/css/fonts.css  @font-face for ET Bembo + IBM Plex Sans Arabic
 assets/css/slides.css slide themes, layouts, utilities
+assets/js/theme.js    light/dark toggle (shared, synced across windows)
 assets/css/site.css   site chrome, presenter, print
 tools/check.mjs       validator (no dependencies)
 tools/render.mjs      screenshots + overflow report (needs Playwright)

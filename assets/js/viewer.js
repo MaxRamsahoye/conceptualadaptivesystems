@@ -1,6 +1,7 @@
 // Deck viewer: audience view, presenter view (?presenter), and capture mode (?capture).
 
 import { loadDeck, renderSlide, applyStep, fitInto, thumbnail, measureOverflow } from './render.js';
+import { initTheme, themeIcon } from './theme.js';
 
 const params = new URLSearchParams(location.search);
 const deckId = params.get('d') || params.get('deck') || '';
@@ -36,6 +37,8 @@ async function boot() {
 
   if (MODE === 'presenter') buildPresenter();
   else buildAudience();
+  // Capture mode renders decks exactly as authored.
+  if (MODE !== 'capture') initTheme({ fallback: () => (deck.meta.theme === 'ink' ? 'dark' : 'light') });
 
   const fromHash = readHash();
   go(fromHash.i, fromHash.step, { broadcast: false, instant: true });
@@ -96,6 +99,7 @@ function buildAudience() {
       <button class="ctl" data-act="overview" title="Overview (O)" aria-label="Overview">${icon('overview')}</button>
       <button class="ctl" data-act="presenter" title="Presenter view (S)" aria-label="Open presenter view">${icon('presenter')}</button>
       <button class="ctl" data-act="fullscreen" title="Fullscreen (F)" aria-label="Fullscreen">${icon('fullscreen')}</button>
+      <button class="ctl theme-toggle" data-key="T" aria-label="Switch theme">${themeIcon}</button>
       <button class="ctl" data-act="help" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">${icon('help')}</button>
     </nav>
     <div class="jump-toast" hidden aria-hidden="true"></div>
@@ -178,6 +182,7 @@ function buildPresenter() {
         <span class="p-title"></span>
         <button class="p-timer" data-act="timer" title="Click to pause · double-click to reset"><span class="elapsed">0:00</span></button>
         <span class="p-clock"></span>
+        <button class="ctl theme-toggle" aria-label="Switch theme">${themeIcon}</button>
         <button class="ctl" data-act="blackout" title="Black out audience screen (B)" aria-label="Black out audience screen">${icon('blackout')}</button>
         <button class="ctl" data-act="help" aria-label="Keyboard shortcuts">${icon('help')}</button>
       </footer>
@@ -353,6 +358,7 @@ function runAction(act) {
     case 'help': return toggleHelp();
     case 'blackout': return setBlackout(!state.blackout);
     case 'timer': return timer.toggle();
+    case 'theme': return document.querySelector('.theme-toggle')?.click();
     case 'jump': return startJump();
     default: return presenterActions[act]?.();
   }
@@ -497,7 +503,8 @@ function setupKeys() {
       s: MODE === 'audience' ? 'presenter' : null, S: MODE === 'audience' ? 'presenter' : null,
       b: 'blackout', B: 'blackout', '.': 'blackout',
       '?': 'help',
-      t: MODE === 'presenter' ? 'timer' : null,
+      t: MODE === 'presenter' ? 'timer' : 'theme',
+      T: MODE === 'presenter' ? null : 'theme',
       r: MODE === 'presenter' ? 'reset' : null,
     };
     const act = map[e.key];
@@ -595,6 +602,7 @@ function helpDialog() {
       row(['S'], 'Presenter view (notes, next slide, timer) in a synced window'),
       row(['F'], 'Fullscreen'),
       row(['B', '.'], 'Black out'),
+      row(['T'], 'Switch light / dark theme'),
       row(['⌘/Ctrl', 'P'], 'Print / save as PDF (one slide per page)'),
       row(['?'], 'This help'),
     ];

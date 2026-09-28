@@ -1,4 +1,6 @@
-# conceptualadaptivesystems — slides
+# Conceptual
+
+Designed presentations on civilisation research.
 
 **Live:** https://maxramsahoye.github.io/conceptualadaptivesystems/
 
@@ -14,7 +16,7 @@ python3 -m http.server      # then open http://localhost:8000
 
 - **Library** (`index.html`) — every deck with a live thumbnail, search (`/`).
 - **Viewer** (`deck.html?d=<id>`) — `←` `→` / Space / click / swipe to move,
-  `O` overview, `F` fullscreen, `B` black out, digits + Enter to jump, `?` for help.
+  `O` overview, `F` fullscreen, `T` light/dark, `B` black out, digits + Enter to jump, `?` for help.
   Every slide has a URL (`#/5`).
 - **Presenter view** (`S`) — a second window with notes, next slide, build count,
   timer and clock; it stays in sync with the audience window either way.
@@ -35,3 +37,8 @@ node tools/render.mjs <id>    # screenshot slides to .renders/<id>/ (needs Playw
 
 GitHub Pages: Settings → Pages → deploy from branch `main`, folder `/`.
 The `.nojekyll` file keeps Jekyll from rewriting the `.md` decks.
+
+## Credits
+
+Type: [ET Bembo](https://github.com/DavidBarts/ET_Bembo) (MIT) and
+[IBM Plex Sans Arabic](https://github.com/IBM/plex) (SIL OFL 1.1); licences in `assets/fonts/`.

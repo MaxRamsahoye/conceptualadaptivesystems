@@ -5,7 +5,7 @@ author: Claude Code
 date: 2026-09-27
 theme: paper
 tags: [guide, reference]
-footer: Slides · a tour
+footer: Conceptual · a tour
 numbers: true
 ---
 

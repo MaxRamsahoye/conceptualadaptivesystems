@@ -5,8 +5,8 @@
    ========================================================================== */
 
 .slide {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, ui-serif, serif;
+  --font-display: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-text: "ET Bembo", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --pad-x: 88px;
   --pad-y: 68px;
@@ -18,8 +18,8 @@
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body);
-  font-size: 30px;
-  line-height: 1.4;
+  font-size: 32px;
+  line-height: 1.38;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   font-kerning: normal;
@@ -33,14 +33,14 @@
   --bg: #f6f3ec;
   --fg: #1f1d1a;
   --muted: #6f685c;
-  --accent: #c2410c;
+  --accent: #16a34a;
   --on-accent: #fff;
   --rule: #ddd6c8;
   --surface: #ece7dc;
   --code-bg: #ebe6da;
   --mark: #f7d98b;
-  --font-head: var(--font-serif);
-  --font-body: var(--font-sans);
+  --font-head: var(--font-display);
+  --font-body: var(--font-text);
   --head-weight: 600;
   --head-tracking: -0.01em;
 }
@@ -48,38 +48,41 @@
   --bg: #121417;
   --fg: #ecebe7;
   --muted: #9d998f;
-  --accent: #f2b25c;
-  --on-accent: #16130d;
+  --accent: #16a34a;
+  --on-accent: #fff;
   --rule: #2d3137;
   --surface: #1b1e23;
   --code-bg: #1b1e23;
   --mark: #6b4f1c;
-  --font-head: var(--font-sans);
-  --font-body: var(--font-sans);
-  --head-weight: 650;
-  --head-tracking: -0.02em;
+  --font-head: var(--font-display);
+  --font-body: var(--font-text);
+  --head-weight: 600;
+  --head-tracking: -0.015em;
 }
 .theme-signal {
   --bg: #ffffff;
   --fg: #0b0b0d;
   --muted: #5d5f68;
-  --accent: #2f54eb;
+  --accent: #16a34a;
   --on-accent: #fff;
   --rule: #e3e4e9;
   --surface: #f2f3f7;
   --code-bg: #f2f3f7;
-  --mark: #dbe3ff;
-  --font-head: var(--font-sans);
-  --font-body: var(--font-sans);
-  --head-weight: 800;
-  --head-tracking: -0.035em;
+  --mark: #d7f5df;
+  --font-head: var(--font-display);
+  --font-body: var(--font-text);
+  --head-weight: 700;
+  --head-tracking: -0.025em;
 }
 
-/* Per-slide colour variants: <!-- class: dark --> etc. */
-.slide.dark {
+/* Per-slide colour variants (<!-- class: dark --> etc.), and the site-wide
+   light/dark toggle, which re-colours every slide not pinned to a variant. */
+.slide.dark,
+:root[data-theme="dark"] .slide:not(.theme-ink):not(.light):not(.brand) {
   --bg: #111316; --fg: #eeede9; --muted: #a09c93; --rule: #2d3137; --surface: #1b1e23; --code-bg: #1b1e23; --mark: #6b4f1c;
 }
-.slide.light {
+.slide.light,
+:root[data-theme="light"] .slide.theme-ink:not(.dark):not(.brand) {
   --bg: #fbfaf7; --fg: #1d1c1a; --muted: #6d675d; --rule: #e0dbd0; --surface: #efebe3; --code-bg: #efebe3; --mark: #f7d98b;
 }
 .slide.brand {
@@ -150,12 +153,12 @@
 .slide h1 { font-size: 68px; }
 .slide h2 { font-size: 48px; margin-bottom: 36px; }
 .slide h3 { font-size: 32px; line-height: 1.2; margin-bottom: .4em; }
-.slide h4 { font-size: 22px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+.slide h4 { font-size: 20px; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
 
 .slide :is(h1, h2, h3) code { font-size: .66em; font-weight: 500; vertical-align: .12em; letter-spacing: 0; }
 .slide p { margin: 0 0 .7em; text-wrap: pretty; }
 .slide a { color: var(--accent); text-decoration-thickness: .06em; text-underline-offset: .15em; }
-.slide strong { font-weight: 650; }
+.slide strong { font-weight: 600; }
 .slide mark { background: var(--mark); color: inherit; padding: 0 .12em; border-radius: .12em; }
 .slide del { color: var(--muted); }
 .slide hr { border: 0; border-top: 2px solid var(--rule); margin: 28px 0; width: 100%; }
@@ -178,7 +181,7 @@
 
 .slide code {
   font-family: var(--font-mono);
-  font-size: .84em;
+  font-size: .76em;
   background: var(--code-bg);
   padding: .08em .3em;
   border-radius: .25em;
@@ -210,14 +213,14 @@
   margin: 0 0 .8em;
   padding: 4px 0 4px 32px;
   border-left: 4px solid var(--accent);
-  font-family: var(--font-head);
+  font-style: italic;
   font-size: 1.12em;
 }
 .slide blockquote p:last-child { margin-bottom: 0; }
 
-.slide table { border-collapse: collapse; font-size: 24px; margin: 0 0 .8em; width: 100%; font-variant-numeric: tabular-nums; }
+.slide table { border-collapse: collapse; font-size: 26px; margin: 0 0 .8em; width: 100%; font-variant-numeric: tabular-nums; }
 .slide th, .slide td { padding: 12px 18px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
-.slide th { font-weight: 650; border-bottom: 2px solid var(--fg); }
+.slide th { font-family: var(--font-head); font-size: .85em; font-weight: 600; border-bottom: 2px solid var(--fg); }
 
 .slide img, .slide video, .slide svg, .slide iframe, .slide canvas { max-width: 100%; }
 .slide img, .slide video { max-height: 480px; object-fit: contain; display: block; }
@@ -225,7 +228,7 @@
 .slide p > img:only-child { display: block; }
 .slide iframe { border: 0; width: 100%; flex: 1; min-height: 0; border-radius: 10px; }
 .slide figure { margin: 0 0 .7em; display: flex; flex-direction: column; min-height: 0; }
-.slide figcaption { font-size: 18px; color: var(--muted); margin-top: 12px; }
+.slide figcaption { font-size: 20px; font-style: italic; color: var(--muted); margin-top: 12px; }
 
 /* ------------------------------------------------------------ columns */
 

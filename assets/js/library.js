@@ -1,6 +1,10 @@
 // Library page: lists every deck in decks/index.json with a live thumbnail of its first slide.
 
 import { loadManifest, loadDeck, thumbnail } from './render.js';
+import { initTheme, themeIcon } from './theme.js';
+
+document.querySelector('.theme-toggle').innerHTML = themeIcon;
+initTheme();
 
 const params = new URLSearchParams(location.search);
 const showDrafts = params.has('drafts');
@@ -55,6 +59,7 @@ async function init() {
 
   search.addEventListener('input', filter);
   document.addEventListener('keydown', (e) => {
+    if (e.key === 't' && !e.target.closest?.('input, textarea') && !e.metaKey && !e.ctrlKey && !e.altKey) document.querySelector('.theme-toggle').click();
     if (e.key === '/' && document.activeElement !== search) { e.preventDefault(); search.focus(); }
     if (e.key === 'Escape' && document.activeElement === search) { search.value = ''; filter(); search.blur(); }
   });
