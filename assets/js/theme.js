@@ -1,5 +1,5 @@
 // Site-wide light/dark preference, shared by the library, viewer and presenter.
-// No stored choice = the library follows the OS, and decks look as authored.
+// No stored choice = light on the library, and decks look as authored.
 
 const KEY = 'slides:theme';
 const root = document.documentElement;
@@ -14,12 +14,11 @@ function setPref(v) {
 
 /**
  * Wire up the toggle. `fallback()` names the look in force when nothing is
- * stored (system preference on the library, the deck's own theme in the viewer).
+ * stored (light on the library, the deck's own theme in the viewer).
  * Returns { toggle, effective }.
  */
 export function initTheme({ fallback, onChange } = {}) {
-  const system = matchMedia('(prefers-color-scheme: dark)');
-  const defaultLook = fallback || (() => (system.matches ? 'dark' : 'light'));
+  const defaultLook = fallback || (() => 'light');
   let pref = getPref();
 
   const effective = () => pref || defaultLook();
@@ -42,7 +41,6 @@ export function initTheme({ fallback, onChange } = {}) {
   document.addEventListener('click', (e) => { if (e.target.closest('.theme-toggle')) toggle(); });
   // Keep other open windows (e.g. presenter view) in step.
   window.addEventListener('storage', (e) => { if (e.key === KEY) { pref = getPref(); apply(); } });
-  system.addEventListener('change', apply);
   apply();
   return { toggle, effective };
 }

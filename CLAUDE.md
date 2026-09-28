@@ -109,7 +109,7 @@ paragraph or list item line, or directly after an image: `![x](a.png){.w-50}`.
 - Titles and headings use **IBM Plex Sans Arabic**; body text and descriptions
   use **ET Bembo** (both self-hosted in `assets/fonts/`). Don't swap fonts per deck.
 - The accent colour is `#16a34a` in every theme; only override `accent:` when asked.
-- Viewers can flip light/dark with the toggle (or `T`). Slides pinned with
+- The site defaults to light; viewers can flip light/dark with the toggle (or `T`). Slides pinned with
   `class: dark` / `light` / `brand` keep their colours; everything else follows
   the toggle. `tools/render.mjs` always renders decks as authored.
 
