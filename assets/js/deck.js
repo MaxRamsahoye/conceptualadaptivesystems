@@ -1,7 +1,7 @@
 // Deck parser: turns a deck.md source into { meta, slides, warnings }.
 // Pure string code (no DOM) so the validator in tools/ can reuse it.
 
-import { markdown, escapeHtml } from './markdown.js';
+import { markdown, escapeHtml } from './markdown.js?v=e6582771a6';
 
 export const LAYOUTS = [
   'default', 'title', 'section', 'center', 'statement', 'quote',

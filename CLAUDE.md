@@ -20,6 +20,14 @@ has no build step and no dependencies — edit files, commit, done.
 
 To edit an existing deck, change its `deck.md` and repeat steps 4–5.
 
+## Changing the site itself
+
+After editing anything in `assets/`, `index.html` or `deck.html`, run
+`node tools/stamp.mjs` before committing. It rewrites the `?v=<hash>` on every
+asset URL and import so GitHub Pages visitors get the whole new version at
+once, instead of a mix of fresh and cached files. `tools/check.mjs` fails if
+stamps are stale. Deck files don't need stamping (they're fetched uncached).
+
 ## deck.md format
 
 ```md
@@ -145,6 +153,7 @@ assets/css/slides.css slide themes, layouts, utilities
 assets/js/theme.js    light/dark toggle (shared, synced across windows)
 assets/css/site.css   site chrome, presenter, print
 tools/check.mjs       validator (no dependencies)
+tools/stamp.mjs       cache-busting ?v= stamps on asset URLs
 tools/render.mjs      screenshots + overflow report (needs Playwright)
 ```
 

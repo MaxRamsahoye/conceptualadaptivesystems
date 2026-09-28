@@ -129,7 +129,7 @@ export function measureOverflow(el) {
 }
 
 export async function loadDeck(id) {
-  const { parseDeck } = await import('./deck.js');
+  const { parseDeck } = await import('./deck.js?v=6cb37f5d10');
   const res = await fetch(`${deckBase(id)}deck.md`, { cache: 'no-cache' });
   if (!res.ok) throw Object.assign(new Error(`Could not load decks/${id}/deck.md (HTTP ${res.status}).`), { status: res.status });
   return parseDeck(await res.text(), { id });
@@ -141,4 +141,10 @@ export async function loadManifest() {
   const data = await res.json();
   const decks = (data.decks || []).map((d) => (typeof d === 'string' ? { id: d } : d));
   return { ...data, decks };
+}
+
+/** Show the page once web fonts have loaded (or after a short wait). */
+export async function revealPage() {
+  await Promise.race([document.fonts?.ready, new Promise((r) => setTimeout(r, 2000))]);
+  requestAnimationFrame(() => document.documentElement.classList.remove('is-loading'));
 }

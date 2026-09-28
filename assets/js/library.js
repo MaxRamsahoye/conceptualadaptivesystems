@@ -1,7 +1,7 @@
 // Library page: lists every deck in decks/index.json with a live thumbnail of its first slide.
 
-import { loadManifest, loadDeck, thumbnail } from './render.js';
-import { initTheme, themeIcon } from './theme.js';
+import { loadManifest, loadDeck, thumbnail, revealPage } from './render.js?v=2c231993c6';
+import { initTheme, themeIcon } from './theme.js?v=755052af71';
 
 document.querySelector('.theme-toggle').innerHTML = themeIcon;
 initTheme();
@@ -15,7 +15,7 @@ const status = $('#status');
 
 let cards = [];
 
-init().catch((err) => {
+init().finally(revealPage).catch((err) => {
   console.error(err);
   const fileProtocol = location.protocol === 'file:';
   status.hidden = false;

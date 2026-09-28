@@ -1,7 +1,7 @@
 // Deck viewer: audience view, presenter view (?presenter), and capture mode (?capture).
 
-import { loadDeck, renderSlide, applyStep, fitInto, thumbnail, measureOverflow } from './render.js';
-import { initTheme, themeIcon } from './theme.js';
+import { loadDeck, renderSlide, applyStep, fitInto, thumbnail, measureOverflow, revealPage } from './render.js?v=2c231993c6';
+import { initTheme, themeIcon } from './theme.js?v=755052af71';
 
 const params = new URLSearchParams(location.search);
 const deckId = params.get('d') || params.get('deck') || '';
@@ -19,7 +19,7 @@ let channel = null;
 
 // ------------------------------------------------------------------ boot
 
-boot().catch(showError);
+boot().catch(showError).finally(revealPage);
 
 async function boot() {
   if (!deckId) {

@@ -1,9 +1,9 @@
 /* Self-hosted type: ET Bembo (MIT, see fonts/ET-Bembo-LICENSE.txt) for text,
    IBM Plex Sans Arabic (OFL, see fonts/IBM-Plex-LICENSE.txt) for titles and headings. */
-@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-Roman.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-SemiBold.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
-@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Bold.woff2") format("woff2"); font-weight: 700 800; font-display: swap; }
+@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-Roman.woff2?v=bb81522377") format("woff2"); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-Italic.woff2?v=bab69ba571") format("woff2"); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: "ET Bembo"; src: url("../fonts/ETBembo-SemiBold.woff2?v=1639a3ce1d") format("woff2"); font-weight: 600 700; font-style: normal; font-display: block; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Regular.woff2?v=2cebaea5d6") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Medium.woff2?v=28e751d926") format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-SemiBold.woff2?v=630468c56a") format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("../fonts/IBMPlexSansArabic-Bold.woff2?v=b696be4a36") format("woff2"); font-weight: 700 800; font-display: block; }

@@ -8,6 +8,7 @@
 import { readFile, readdir, access } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 import { parseDeck } from '../assets/js/deck.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -68,6 +69,14 @@ for (const id of only ? [only] : listed) {
     if (codeLines > LIMITS.codeLines) warn(where, `${codeLines}-line code block — may not fit`);
   }
   console.log(`  ${deck.slides.length} slides, theme ${deck.meta.theme}, ${deck.meta.aspect}`);
+}
+
+// Site assets must carry current ?v= stamps, or deploys load mixed versions.
+try {
+  execFileSync(process.execPath, [join(root, 'tools/stamp.mjs'), '--check'], { stdio: 'pipe' });
+} catch (e) {
+  errors++;
+  console.log(`\n${String(e.stdout).trim()}`);
 }
 
 console.log(`\n${errors} error(s), ${warnings} warning(s)`);

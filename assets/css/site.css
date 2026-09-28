@@ -22,7 +22,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
-body { font-family: var(--ui-font); background: var(--page); color: var(--ink); }
+body { font-family: var(--ui-font); background: var(--page); color: var(--ink); transition: opacity .2s ease; }
+/* Hold the page until fonts and content are in, so it appears in one piece
+   (inline script in each page adds the class; a 3s fail-safe removes it). */
+html.is-loading body { opacity: 0; transition: none; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 kbd {
   font-family: var(--ui-mono); font-size: .82em; padding: .1em .45em; border-radius: 5px;
